@@ -58,6 +58,8 @@
     <Compile Include="Controls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TagColorConverter.cs" />
+    <Compile Include="Dummy\DummyTask.cs" />
     <Compile Include="_WPF_\DelegateCommand.cs" />
     <Compile Include="_WPF_\DependencyManager.cs" />
     <Compile Include="_WPF_\DependencyModel.cs" />

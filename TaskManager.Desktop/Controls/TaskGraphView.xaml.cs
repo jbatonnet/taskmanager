@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace TaskManager.Desktop
 {
-    /// <summary>
-    /// Interaction logic for TaskGraphView.xaml
-    /// </summary>
     public partial class TaskGraphView : UserControl
     {
         public TaskGraphView()

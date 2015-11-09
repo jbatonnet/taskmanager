@@ -1,14 +1,63 @@
-﻿<UserControl x:Class="TaskManager.Desktop.Controls.TaskControl"
+﻿<UserControl x:Class="TaskManager.Desktop.TaskControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TaskManager.Desktop.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="45.652" d:DesignWidth="157.174">
-    <Border CornerRadius="4" Background="Wheat" BorderBrush="Black" BorderThickness="1">
+             xmlns:local="clr-namespace:TaskManager.Desktop"
+             mc:Ignorable="d"
+             d:DesignWidth="224">
+
+    <UserControl.Resources>
+        <local:DummyTask x:Key="DummyTask" />
+        <local:TagColorConverter x:Key="TagColorConverter" />
+    </UserControl.Resources>
+
+    <Border CornerRadius="4" Background="White" BorderBrush="LightGray" BorderThickness="1" Padding="4,0,4,4"
+            d:DataContext="{StaticResource DummyTask}">
         <Grid>
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ItemsControl ItemsSource="{Binding Tags}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border MinWidth="16" Height="4" ToolTip="{Binding Name}">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0.0" Color="{Binding Color, Converter={StaticResource TagColorConverter}}" />
+                                    <GradientStop Offset="3.0" Color="Transparent" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Grid.Column="0" Grid.Row="1"
+                       Text="{Binding Name, FallbackValue=Task.Name}" FontSize="13" />
+            <TextBox Grid.Column="0" Grid.Row="1" BorderThickness="0"
+                     Text="{Binding Name, FallbackValue=Task.Name}" FontSize="13" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2"
+                       Foreground="Gray" FontSize="11" TextTrimming="CharacterEllipsis"
+                       Text="{Binding Description, FallbackValue=Task.Description}" ToolTip="{Binding Description}"  />
+
+            <StackPanel Grid.Column="0" Grid.Row="3">
+                <Border Width="16" Height="16" />
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>
