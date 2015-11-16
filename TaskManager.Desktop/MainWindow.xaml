@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager.Desktop"
         mc:Ignorable="d"
-        Title="TaskManager" MinWidth="280" MinHeight="350" Height="212" Width="161" ResizeMode="CanMinimize">
+        Title="TaskManager" MinWidth="280" MinHeight="350" Height="212" Width="161"
+        Loaded="Window_Loaded">
 
     <Window.Resources>
         <Style x:Key="ImageEnabled" TargetType="Image">
@@ -43,9 +44,9 @@
             </Button>
         </ToolBar>
 
-        <local:TaskGraphView Grid.Row="1">
+        <local:SingleTaskGraphView x:Name="Graph" Grid.Row="1" Width="Auto">
             
-        </local:TaskGraphView>
+        </local:SingleTaskGraphView>
 
         <StatusBar Grid.Row="2" DockPanel.Dock="Bottom">
             <StatusBarItem>

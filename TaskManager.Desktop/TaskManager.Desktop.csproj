@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\GlobalTaskGraphView.xaml.cs">
+      <DependentUpon>GlobalTaskGraphView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
     </Compile>
@@ -66,11 +69,15 @@
     <Compile Include="_WPF_\DependsOnAttribute.cs" />
     <Compile Include="_WPF_\IPropertyUpdatable.cs" />
     <Compile Include="_WPF_\VisualSnapshotConverter.cs" />
+    <Page Include="Controls\GlobalTaskGraphView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\TaskControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TaskGraphView.xaml">
+    <Page Include="Controls\SingleTaskGraphView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,8 +93,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\TaskGraphView.xaml.cs">
-      <DependentUpon>TaskGraphView.xaml</DependentUpon>
+    <Compile Include="Controls\SingleTaskGraphView.xaml.cs">
+      <DependentUpon>SingleTaskGraphView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TaskListView.xaml.cs">
       <DependentUpon>TaskListView.xaml</DependentUpon>

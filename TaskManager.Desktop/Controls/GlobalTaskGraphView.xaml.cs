@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 
 namespace TaskManager.Desktop
 {
-    public partial class TaskGraphView : UserControl
+    public partial class GlobalTaskGraphView : UserControl
     {
-        public TaskGraphView()
+        public GlobalTaskGraphView()
         {
             InitializeComponent();
         }

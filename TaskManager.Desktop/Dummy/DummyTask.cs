@@ -22,10 +22,24 @@ namespace TaskManager.Desktop
             Tags.Add(osTag);
             Tags.Add(cppTag);
 
+            // Parents
+            Task devTask = new Task() { Name = "Development" };
+            Parents.Add(devTask);
+
             // SubTask 1
             Task driverTask = new Task() { Name = "Develop new drivers" };
             driverTask.Tags.Add(cppTag);
             Children.Add(driverTask);
+
+            // SubTask 1.1
+            Task usbTask = new Task() { Name = "USB Driver" };
+            usbTask.Tags.Add(cppTag);
+            driverTask.Children.Add(usbTask);
+
+            // SubTask 1.2
+            Task d3dTask = new Task() { Name = "3D Driver" };
+            d3dTask.Tags.Add(cppTag);
+            driverTask.Children.Add(d3dTask);
 
             // SubTask 2
             Task uiTask = new Task() { Name = "Design interface" };
