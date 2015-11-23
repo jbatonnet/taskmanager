@@ -44,9 +44,7 @@
             </Button>
         </ToolBar>
 
-        <local:SingleTaskGraphView x:Name="Graph" Grid.Row="1" Width="Auto">
-            
-        </local:SingleTaskGraphView>
+        <local:SingleTaskGraphView Grid.Row="1" Width="Auto" Margin="8" />
 
         <StatusBar Grid.Row="2" DockPanel.Dock="Bottom">
             <StatusBarItem>

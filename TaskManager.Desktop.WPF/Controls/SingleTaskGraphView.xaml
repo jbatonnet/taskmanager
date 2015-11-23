@@ -12,23 +12,10 @@
         <local:TagColorConverter x:Key="TagColorConverter" />
     </UserControl.Resources>
 
-    <Grid d:DataContext="{StaticResource DummyTask}">
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="24" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="24" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="24" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="24" />
-        </Grid.RowDefinitions>
+    <StackPanel x:Name="Root" d:DataContext="{StaticResource DummyTask}">
 
         <!-- Parents -->
-        <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Parents}">
+        <ItemsControl ItemsSource="{Binding Parents}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel />
@@ -46,9 +33,9 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        
+
         <!-- Current task -->
-        <Border Grid.Column="1" Grid.Row="2">
+        <Border>
             <Border CornerRadius="4" Background="White" BorderBrush="LightGray" BorderThickness="1" Padding="4,0,4,4"
                     d:DataContext="{StaticResource DummyTask}">
                 <Grid>
@@ -67,7 +54,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border MinWidth="16" Height="4" ToolTip="{Binding Name}" CornerRadius="0,0,2,2">
+                                <Border Margin="2,0,0,0" MinWidth="16" Height="4" ToolTip="{Binding Name}" CornerRadius="0,0,2,2">
                                     <Border.Background>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                             <GradientStop Offset="0.0" Color="{Binding Color, Converter={StaticResource TagColorConverter}}" />
@@ -98,7 +85,7 @@
         </Border>
 
         <!-- Children tasks -->
-        <ItemsControl Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Children}">
+        <ItemsControl ItemsSource="{Binding Children}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel />
@@ -106,18 +93,9 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="8" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                         <!-- Arrow -->
-                        <Grid Grid.Column="0" Grid.Row="1" Width="8" Height="16" Margin="8,0,4,0">
+                        <Grid Width="8" Height="16" Margin="8,0,4,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
@@ -126,7 +104,7 @@
                         </Grid>
 
                         <!-- Children -->
-                        <Border Grid.Column="1" Grid.Row="1" CornerRadius="4" BorderBrush="LightGray" BorderThickness="1" Padding="4,0,4,4">
+                        <Border CornerRadius="4" BorderBrush="LightGray" BorderThickness="1" Padding="4,0,4,4">
 
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -134,7 +112,7 @@
                                     <GradientStop Offset="0.5000" Color="White" />
                                 </LinearGradientBrush>
                             </Border.Background>
-                            
+
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -153,7 +131,7 @@
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Border MinWidth="8" Height="4" ToolTip="{Binding Name}" CornerRadius="0,0,2,2">
+                                            <Border Margin="1,0,0,0" MinWidth="8" Height="4" ToolTip="{Binding Name}" CornerRadius="0,0,2,2">
                                                 <Border.Background>
                                                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                                         <GradientStop Offset="0.0" Color="{Binding Color, Converter={StaticResource TagColorConverter}}" />
@@ -165,12 +143,52 @@
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
 
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Name, FallbackValue=Task.Name}" FontSize="12" Cursor="Hand" ToolTip="{Binding Description}" />
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Name, FallbackValue=Task.Name}" FontSize="12" Cursor="Hand" ToolTip="{Binding Description}" MouseLeftButtonUp="Children_MouseLeftButtonUp" />
                             </Grid>
                         </Border>
-                    </Grid>
+
+                        <!-- Arrow -->
+                        <Grid Width="8" Height="16" Margin="4,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,0,1" />
+                        </Grid>
+
+                        <!-- Sub-children -->
+                        <TextBlock VerticalAlignment="Center" Margin="0,0,0,2" Text="3 children" />
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+
+        <!-- Add child -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Arrow -->
+            <Grid Grid.Column="0" Grid.Row="1" Width="8" Height="16" Margin="8,0,4,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="1,0,0,1" />
+            </Grid>
+
+            <!-- Children -->
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="+" FontSize="20" Margin="4,-7" Cursor="Hand" MouseLeftButtonUp="AddChild_MouseLeftButtonUp" />
+                <TextBlock Text="Add a child" FontSize="12" Cursor="Hand" MouseLeftButtonUp="AddChild_MouseLeftButtonUp" />
+            </StackPanel>
+        </Grid>
+
+    </StackPanel>
 </UserControl>

@@ -12,6 +12,7 @@ namespace TaskManager.Desktop
         private static Tag osTag = new Tag("OS", TagColor.Cyan);
         private static Tag uiTag = new Tag("UI", TagColor.Red);
         private static Tag cppTag = new Tag("C++", TagColor.Green);
+        private static Tag hwTag = new Tag("HW", TagColor.Blue);
 
         public DummyTask()
         {
@@ -29,6 +30,7 @@ namespace TaskManager.Desktop
             // SubTask 1
             Task driverTask = new Task() { Name = "Develop new drivers" };
             driverTask.Tags.Add(cppTag);
+            driverTask.Tags.Add(hwTag);
             Children.Add(driverTask);
 
             // SubTask 1.1
