@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attachement.cs" />
+    <Compile Include="Modules\RecipeModule.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="Modules\ContactModule.cs" />
     <Compile Include="Modules\ProjectModule.cs" />

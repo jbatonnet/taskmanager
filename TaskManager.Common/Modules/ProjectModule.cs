@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Common
 {
+    [Module("Project", Prefix)]
     public class ProjectModule : Module
     {
         private const string Prefix = "Project.";

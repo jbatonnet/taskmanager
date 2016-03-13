@@ -1,0 +1,57 @@
+﻿<Window x:Class="TaskManager.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager.Desktop"
+        mc:Ignorable="d"
+        Title="TaskManager" MinWidth="280" MinHeight="350" Height="212" Width="161"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style x:Key="ImageEnabled" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.25"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ToolBar Grid.Row="0" ToolBarTray.IsLocked="True">
+            <Button Command="{Binding NewFlowCommand}" ToolTip="Create an new task storage">
+                <Image Source="Resources\New.png" Style="{StaticResource ImageEnabled}" />
+            </Button>
+            <Button Command="{Binding OpenFlowCommand}" ToolTip="Open an existing task storage">
+                <Image Source="Resources\Open.png" Style="{StaticResource ImageEnabled}" />
+            </Button>
+            <Button Command="{Binding SaveFlowCommand}" ToolTip="Save the current task storage">
+                <Image Source="Resources\Save.png" Style="{StaticResource ImageEnabled}" />
+            </Button>
+            <Separator />
+            <Button Command="{Binding UndoCommand}" ToolTip="Undo your last action">
+                <Image Source="Resources\Undo.png" Style="{StaticResource ImageEnabled}" />
+            </Button>
+            <Button Command="{Binding RedoCommand}" ToolTip="Redo the previous action">
+                <Image Source="Resources\Redo.png" Style="{StaticResource ImageEnabled}" />
+            </Button>
+        </ToolBar>
+
+        <local:SingleTaskGraphView x:Name="Graph" Grid.Row="1" Width="Auto">
+            
+        </local:SingleTaskGraphView>
+
+        <StatusBar Grid.Row="2" DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="TextBlock" Text="{local:Lambda Test.ToUpper()}" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

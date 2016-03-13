@@ -8,6 +8,8 @@ namespace TaskManager.Common
 {
     public enum TagColor
     {
+        None,
+
         Black,
         Gray,
         White,
@@ -21,15 +23,28 @@ namespace TaskManager.Common
         Yellow,
     }
 
-    public struct Tag
+    public struct Tag : IEqualityComparer<Tag>, IEquatable<Tag>
     {
-        public string Name { get; private set; }
-        public TagColor Color { get; private set; }
+        public string Name { get; set; }
+        public TagColor Color { get; set; }
 
         public Tag(string name, TagColor color)
         {
             Name = name;
             Color = color;
+        }
+
+        public bool Equals(Tag x, Tag y)
+        {
+            return x.Name == y.Name;
+        }
+        public int GetHashCode(Tag obj)
+        {
+            return obj.Name.GetHashCode();
+        }
+        public bool Equals(Tag other)
+        {
+            return Name == other.Name;
         }
     }
 }

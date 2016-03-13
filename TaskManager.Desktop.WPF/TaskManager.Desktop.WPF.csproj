@@ -63,12 +63,6 @@
     </Compile>
     <Compile Include="Converters\TagColorConverter.cs" />
     <Compile Include="Dummy\DummyTask.cs" />
-    <Compile Include="_WPF_\DelegateCommand.cs" />
-    <Compile Include="_WPF_\DependencyManager.cs" />
-    <Compile Include="_WPF_\DependencyModel.cs" />
-    <Compile Include="_WPF_\DependsOnAttribute.cs" />
-    <Compile Include="_WPF_\IPropertyUpdatable.cs" />
-    <Compile Include="_WPF_\VisualSnapshotConverter.cs" />
     <Page Include="Controls\GlobalTaskGraphView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,6 +139,7 @@
     <Resource Include="Resources\SaveAll.png" />
     <Resource Include="Resources\Undo.png" />
   </ItemGroup>
+  <Import Project="..\..\[Shared]\WPF\WPF.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

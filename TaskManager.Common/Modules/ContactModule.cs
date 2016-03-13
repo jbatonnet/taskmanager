@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Common
 {
+    [Module("Contact", Prefix)]
     public class ContactModule : Module
     {
         private const string Prefix = "Contact.";
@@ -19,6 +20,17 @@ namespace TaskManager.Common
             set
             {
                 WriteMetadata(Prefix + nameof(Name), value);
+            }
+        }
+        public DateTime Birthday
+        {
+            get
+            {
+                return ReadMetadata<DateTime>(Prefix + nameof(Birthday));
+            }
+            set
+            {
+                WriteMetadata(Prefix + nameof(Birthday), value);
             }
         }
 

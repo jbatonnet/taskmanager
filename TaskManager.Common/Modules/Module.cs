@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Common
 {
+    public class ModuleAttribute : Attribute
+    {
+        public string Category { get; private set; }
+        public string Prefix { get; private set; }
+
+        public ModuleAttribute(string category, string prefix)
+        {
+            Category = category;
+            Prefix = prefix;
+        }
+    }
+
     public abstract class Module
     {
         public Task Task { get; private set; }

@@ -1,0 +1,31 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/AddTaskMenuItem"
+        android:title="Add task"
+        android:icon="@drawable/ic_add"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/EditTaskMenuItem"
+        android:title="Edit task"
+        android:icon="@drawable/ic_create"
+        app:showAsAction="always" />
+    
+    <!--<item
+        android:id="@+id/SearchTaskMenuItem"
+        android:title="Search tasks"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always" />-->
+    
+    <item
+        android:id="@+id/UploadMenuItem"
+        android:title="Upload"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/DownloadMenuItem"
+        android:title="Download"
+        app:showAsAction="never" />
+
+</menu>
