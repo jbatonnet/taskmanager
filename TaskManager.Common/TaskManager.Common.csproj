@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attachement.cs" />
+    <Compile Include="Attachment.cs" />
     <Compile Include="Modules\RecipeModule.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="Modules\ContactModule.cs" />

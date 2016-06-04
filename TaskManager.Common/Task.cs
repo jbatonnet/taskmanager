@@ -16,7 +16,7 @@ namespace TaskManager.Common
         public string Description { get; set; }
         public DateTime? Date { get; set; }
         public List<Tag> Tags { get; } = new List<Tag>();
-        public List<Attachement> Attachements { get; } = new List<Attachement>();
+        public List<Attachment> Attachements { get; } = new List<Attachment>();
         public Dictionary<string, object> Metadata { get; } = new Dictionary<string, object>();
 
         // Graph

@@ -20,7 +20,7 @@ namespace TaskManager.Desktop
         private bool modified = false;
 
         private Dictionary<Task, List<TreeNode>> taskNodes = new Dictionary<Task, List<TreeNode>>();
-        private Dictionary<string, Attachement> openAttachements = new Dictionary<string, Attachement>();
+        private Dictionary<string, Attachment> openAttachements = new Dictionary<string, Attachment>();
 
         private TreeNode selectedNode;
         private Task selectedTask;
@@ -46,7 +46,7 @@ namespace TaskManager.Desktop
 
             // Build task tree
             TaskTree.Nodes.Clear();
-            foreach (Task task in Program.Database.Tasks.Where(t => t.Parents.Count == 0))
+            foreach (Task task in Program.Database.Where(t => t.Parents.Count == 0))
             {
                 TreeNode node = TaskTree.Nodes.Add(task.Name);
                 taskNodes.Add(task, new List<TreeNode>() { node });
@@ -92,7 +92,7 @@ namespace TaskManager.Desktop
             }
 
             TaskAttachementsList.Items.Clear();
-            foreach (Attachement attachement in selectedTask.Attachements)
+            foreach (Attachment attachement in selectedTask.Attachements)
             {
                 ListViewItem item = TaskAttachementsList.Items.Add(attachement.Name);
                 item.Tag = attachement;
@@ -146,7 +146,7 @@ namespace TaskManager.Desktop
                     foreach (Task child in task.Children)
                         child.Parents.Remove(task);
 
-                    Program.Database.Tasks.Remove(task);
+                    Program.Database.Objects.Remove(task);
                     taskNodes.Remove(task);
                 }
             }
@@ -230,7 +230,7 @@ namespace TaskManager.Desktop
             node.Tag = task;
 
             modified = true;
-            Program.Database.Tasks.Add(task);
+            Program.Database.Objects.Add(task);
             taskNodes.Add(task, new List<TreeNode>() { node });
 
             if (selectedNode != null)
@@ -325,8 +325,8 @@ namespace TaskManager.Desktop
                 if (!fileInfo.Exists)
                     continue;
 
-                Attachement attachement = new Attachement();
-                attachement.Type = AttachementType.File;
+                Attachment attachement = new Attachment();
+                attachement.Type = AttachmentType.File;
                 attachement.Name = fileInfo.Name;
                 attachement.Data = File.ReadAllBytes(fileInfo.FullName);
 
@@ -347,7 +347,7 @@ namespace TaskManager.Desktop
                 Directory.CreateDirectory(path);
 
             ListViewItem selectedItem = TaskAttachementsList.SelectedItems[0];
-            Attachement attachement = selectedItem.Tag as Attachement;
+            Attachment attachement = selectedItem.Tag as Attachment;
 
             path = Path.Combine(path, attachement.Name);
             File.WriteAllBytes(path, attachement.Data);
@@ -369,7 +369,7 @@ namespace TaskManager.Desktop
 
             foreach (ListViewItem selectedItem in TaskAttachementsList.SelectedItems)
             {
-                Attachement attachement = selectedItem.Tag as Attachement;
+                Attachment attachement = selectedItem.Tag as Attachment;
                 selectedTask.Attachements.Remove(attachement);
             }
 
@@ -379,7 +379,7 @@ namespace TaskManager.Desktop
         private void FsWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             string path = e.FullPath;
-            Attachement attachement = openAttachements[path.ToLower()];
+            Attachment attachement = openAttachements[path.ToLower()];
             attachement.Data = File.ReadAllBytes(path);
         }
     }

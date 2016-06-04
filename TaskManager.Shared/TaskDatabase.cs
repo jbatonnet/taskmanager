@@ -129,10 +129,10 @@ namespace TaskManager.Shared
                 {
                     while (reader.Read())
                     {
-                        Attachement attachement = new Attachement()
+                        Attachment attachement = new Attachment()
                         {
                             Name = reader.GetString(1),
-                            Type = reader.IsDBNull(2) ? AttachementType.Binary : (AttachementType)Enum.Parse(typeof(AttachementType), reader.GetString(2), true)
+                            Type = reader.IsDBNull(2) ? AttachmentType.Binary : (AttachmentType)Enum.Parse(typeof(AttachmentType), reader.GetString(2), true)
                         };
 
                         attachement.Data = (byte[])reader.GetValue(3);
@@ -281,7 +281,7 @@ namespace TaskManager.Shared
             // Save attachements
             queries.Add("DELETE FROM attachements");
             foreach (Task task in tasks)
-                foreach (Attachement attachement in task.Attachements)
+                foreach (Attachment attachement in task.Attachements)
                 {
                     using (DbCommand command = connection.CreateCommand())
                     {

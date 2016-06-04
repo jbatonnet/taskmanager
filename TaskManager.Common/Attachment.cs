@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Common
 {
-    public enum AttachementType
+    public enum AttachmentType
     {
         Binary,
 
@@ -16,10 +16,10 @@ namespace TaskManager.Common
         Document
     }
 
-    public class Attachement
+    public class Attachment
     {
         public string Name { get; set; }
-        public AttachementType Type { get; set; }
+        public AttachmentType Type { get; set; }
         public byte[] Data { get; set; }
     }
 }
