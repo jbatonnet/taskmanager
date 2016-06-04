@@ -20,6 +20,7 @@ using TaskManager.Common;
 
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using MySql.Data.MySqlClient;
+using TaskManager.Shared;
 
 namespace TaskManager.Android
 {

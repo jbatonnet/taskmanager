@@ -9,6 +9,7 @@
     <Import_RootNamespace>TaskManager.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)TaskBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TaskDatabase.cs" />
   </ItemGroup>
 </Project>

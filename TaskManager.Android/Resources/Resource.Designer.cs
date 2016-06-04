@@ -26,6 +26,7 @@ namespace TaskManager.Android
 		
 		public static void UpdateIdValues()
 		{
+			global::Couchbase.Lite.Android.Resource.String.library_name = global::TaskManager.Android.Resource.String.library_name;
 		}
 		
 		public partial class Animation
@@ -2541,11 +2542,11 @@ namespace TaskManager.Android
 			// aapt resource value: 0x7f080012
 			public const int abc_toolbar_collapse_description = 2131230738;
 			
-			// aapt resource value: 0x7f080018
-			public const int action_settings = 2131230744;
+			// aapt resource value: 0x7f080019
+			public const int action_settings = 2131230745;
 			
-			// aapt resource value: 0x7f080016
-			public const int app_name = 2131230742;
+			// aapt resource value: 0x7f080017
+			public const int app_name = 2131230743;
 			
 			// aapt resource value: 0x7f080014
 			public const int appbar_scrolling_view_behavior = 2131230740;
@@ -2553,8 +2554,11 @@ namespace TaskManager.Android
 			// aapt resource value: 0x7f080015
 			public const int character_counter_pattern = 2131230741;
 			
-			// aapt resource value: 0x7f080017
-			public const int large_text = 2131230743;
+			// aapt resource value: 0x7f080018
+			public const int large_text = 2131230744;
+			
+			// aapt resource value: 0x7f080016
+			public const int library_name = 2131230742;
 			
 			// aapt resource value: 0x7f080013
 			public const int status_bar_notification_info_overflow = 2131230739;
