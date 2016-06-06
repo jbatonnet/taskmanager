@@ -15,7 +15,11 @@ namespace TaskManager.Desktop
         [STAThread]
         public static void Main(params string[] args)
         {
-            Database = new TaskBase(args[0], args[1], args[2]);
+            string address = args[0];
+            string username = args[1];
+            string password = args[2];
+
+            Database = new TaskBase(address, username, password);
             Database.Load();
 
             // Connect to local database

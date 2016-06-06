@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Common
 {
-    public class Task : IEquatable<Task>
+    public class Task
     {
-        public int Id { get; set; } = -1;
+        public int Id;
 
         // Common
         public string Name { get; set; }
@@ -77,11 +77,7 @@ namespace TaskManager.Common
 
             return constructor.Invoke(new object[] { this }) as T;
         }
-
-        public bool Equals(Task other)
-        {
-            return Id == other.Id;
-        }
+        
         public override string ToString()
         {
             return Name;

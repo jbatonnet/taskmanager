@@ -12,6 +12,7 @@ using TaskManager.Common;
 using System.Data.SQLite;
 using System.IO;
 using System.Diagnostics;
+using TaskManager.Shared;
 
 namespace TaskManager.Desktop
 {

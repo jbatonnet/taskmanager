@@ -64,11 +64,19 @@ namespace TaskManager.Shared
 
         public override void Load()
         {
-            /*System.Data.SQLite.SQLiteConnection connection = new System.Data.SQLite.SQLiteConnection(@"Data Source=C:\Users\jbatonnet\Desktop\GRW.db");
+           /* 
+
+            System.Data.SQLite.SQLiteConnection connection = new System.Data.SQLite.SQLiteConnection(@"Data Source=D:\Projets\C#\TaskManager\Samples\Tasks.db");
             connection.Open();
+
+            //Clear();
+
             TaskDatabase db = new TaskDatabase(connection);
             tasks = db.Tasks;
-            return;*/
+
+            return;
+            
+            /**/
 
             tasks = new List<Task>();
 
@@ -169,7 +177,7 @@ namespace TaskManager.Shared
                     taskDocuments.Add(Tuple.Create(newTask, database.CreateDocument()));
 
                 // Update everything
-                /*foreach (var pair in taskDocuments)
+                foreach (var pair in taskDocuments)
                 {
                     Task task = pair.Item1;
                     if (oldTasks.Contains(task))
@@ -188,7 +196,26 @@ namespace TaskManager.Shared
 
                         return true;
                     });
-                }*/
+                }
+
+                return true;
+            }));
+
+            // Then force sync to sevrer
+            Replication replication = database.CreatePushReplication(uri);
+            replication.Authenticator = authenticator;
+            replication.Run();
+        }
+
+        public void Clear()
+        {
+            // Remove every documents
+            database.RunInTransaction(new RunInTransactionDelegate(() =>
+            {
+                Query query = database.CreateAllDocumentsQuery();
+
+                foreach (QueryRow row in query.Run())
+                    row.Document.Delete();
 
                 return true;
             }));
